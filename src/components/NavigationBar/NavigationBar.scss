@@ -1,0 +1,179 @@
+.app__navbar {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.25
+  ); // here, this property create a white background with opacity 0.28
+  backdrop-filter: blur(4px); // Make background blurry transparent
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: fixed; // Make navigation bar fixed on top
+  z-index: 2; // make items appear above background
+}
+
+.app__navbar-logo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  // Using Nesting property feature of scss
+  img {
+    width: 90px;
+    height: 20px;
+
+    @media screen and (min-width: 2000px) {
+      width: 180px;
+      height: 40px;
+    }
+  }
+}
+
+.app__navbar-links {
+  flex: 1; // Take rest of space not taken by logo
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  list-style: none; // This property is applied by another class though
+
+  li {
+    margin: 0 1rem;
+    cursor: pointer;
+
+    flex-direction: column;
+
+    div {
+      width: 5px;
+      height: 5px;
+      background: transparent;
+      border-radius: 50%;
+
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: var(--gray-color); // Importing color from index.css for theme
+      text-decoration: none;
+      flex-direction: column;
+
+      text-transform: uppercase;
+      font-weight: 500;
+
+      transition: all 0.3s ease-in-out; // Only Visible after defining hover property
+
+      // '&' refers to the element/class/id itself
+      &:hover {
+        color: var(--secondary-color);
+      }
+    }
+
+    &:hover {
+      div {
+        background: var(--secondary-color);
+      }
+    }
+  }
+
+  // After 900px display size all the items will disapper
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+.app__navbar-menu {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%; // circular border property
+  position: relative; // Position is not fixed and changes here
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--secondary-color);
+
+  svg {
+    width: 70%;
+    height: 70%;
+    color: var(--white-color);
+  }
+
+  div {
+    position: fixed;
+    top: 0; // we want to start from top with 0 padding or margin
+    bottom: 0; // Start from bottom with 0 padding or margin
+    right: 0;
+    z-index: 5;
+
+    padding: 1rem;
+
+    width: 80%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+
+    background: url("../../assets/bgWhite.png");
+    background-color: var(--white-color);
+    background-size: cover;
+    background-repeat: repeat;
+
+    box-shadow: rgba(168, 168, 168, 0.15);
+
+    svg {
+      width: 35px;
+      height: 35px;
+      color: var(--secondary-color);
+      margin: 0.5rem 1rem;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+
+      li {
+        margin: 1rem;
+
+        a {
+          color: var(--gray-color);
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 1rem;
+          font-weight: 500;
+
+          transition: all 0.3s ease-in-out; // Only Visible after defining hover property
+
+          // '&' refers to the element/class/id itself
+          &:hover {
+            color: var(--secondary-color);
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: 900px) {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    display: none;
+  }
+}
