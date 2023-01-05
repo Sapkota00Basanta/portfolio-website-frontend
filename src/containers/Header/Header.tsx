@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 // Import User-Defined Modules
 import "./Header.scss";
 import {
-  profile,
+  personalProfile,
   circle,
   typescript,
   react,
@@ -54,7 +54,7 @@ export const Header: React.FC<IHeaderProps> = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }} // Div element loads first and then only the element inside it loads
         className="app__header-img"
       >
-        <img src={profile} alt="profile_bg" />
+        <img src={personalProfile} alt="profile_bg" />
         <motion.img
           whileInView={{ scale: [0, 1] }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
