@@ -25,6 +25,7 @@ import about03 from "../assets/about03.png";
 import about04 from "../assets/about04.png";
 
 import profile from "../assets/profile.png";
+import personalProfile from "../assets/personal-profile.png";
 import circle from "../assets/circle.svg";
 import logo from "../assets/logo.png";
 
@@ -61,6 +62,7 @@ export {
   about02,
   about03,
   about04,
+  personalProfile,
   profile,
   circle,
   logo,
@@ -71,4 +73,4 @@ export {
   nb,
   skype,
   spotify,
-};
+} ;
