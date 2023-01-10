@@ -6,3 +6,9 @@
 export interface IAboutProps {
   props?: string;
 }
+
+export interface IAboutDemoData {
+  title: string,
+  description: string,
+  imageURL: string
+}

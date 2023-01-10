@@ -71,7 +71,7 @@
     display: flex; // By default the display type is block so, changing to flex
     flex-direction: row;
     width: auto;
-
+    cursor: pointer;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); // This property creates a card style border
   }
 
