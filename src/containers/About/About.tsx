@@ -6,37 +6,31 @@ import { motion } from "framer-motion";
 import "./About.scss";
 import {
   IAboutProps,
-  IAboutDemoData,
+  IAboutData,
 } from "../../types/containers/About.interface";
-import { about01, about02, about03, about04 } from "../../constants";
-
-// Demo About Section array details
-const aboutDetails: Array<IAboutDemoData> = [
-  {
-    title: "Frontend Developer",
-    description:
-      "Well Knowleged frontend developer using React, styling libraries like SCSS, tailwind, MaterialUI",
-    imageURL: about01,
-  },
-  {
-    title: "Backend Developer",
-    description: "Proper knowledge in Typescript with Express Framework",
-    imageURL: about02,
-  },
-  {
-    title: "Software Engineer",
-    description: "Overall well knowledge about software development cycle.",
-    imageURL: about03,
-  },
-  {
-    title: "Security Focused Developer",
-    description:
-      "Gained some experience as previously worked in a cybersecurity company as software developer",
-    imageURL: about04,
-  },
-];
+import { sanityClientConfig, urlFor } from "../../common/sanity.client";
 
 export const About: React.FC<IAboutProps> = () => {
+  // Define a state to hold the about details value
+  const [aboutArrayData, setAboutArrayData] = useState<Array<IAboutData>>([]);
+
+  // Using useEffect hook to fetch data from sanity only
+  useEffect(() => {
+    try {
+      const sanityQuery = '*[_type == "abouts"]';
+      sanityClientConfig
+        .fetch(sanityQuery)
+        .then((fetchedAboutData: Array<IAboutData>) => {
+          setAboutArrayData(fetchedAboutData);
+        })
+        .catch((error: any) => {
+          return new Error("Error while fetching about section data", error);
+        });
+    } catch (error) {
+      console.log("Error while fetching data from sanity", error);
+    }
+  }, []);
+
   return (
     <>
       <h2 className="head-text">
@@ -48,7 +42,7 @@ export const About: React.FC<IAboutProps> = () => {
       </h2>
 
       <div className="app__profiles">
-        {aboutDetails.map((aboutItem, index) => (
+        {aboutArrayData.map((aboutItem, index) => (
           <motion.div
             whileInView={{ opacity: 1 }} // Maintaing the visibility value
             whileHover={{ scale: 1.1 }} // Size of any element
@@ -56,7 +50,7 @@ export const About: React.FC<IAboutProps> = () => {
             className="app__profile-item"
             key={aboutItem.title + index}
           >
-            <img src={aboutItem.imageURL} alt={aboutItem.title} />
+            <img src={urlFor(aboutItem.imageURL)} alt={aboutItem.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>
               {aboutItem.title}
             </h2>
